@@ -1,0 +1,3 @@
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\PrimeiroProjeto\Utils\bin\Release\net8.0\publish\Utils.dll
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\PrimeiroProjeto\Utils\bin\Release\net8.0\publish\Utils.deps.json
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\PrimeiroProjeto\Utils\bin\Release\net8.0\publish\Utils.pdb

@@ -1,0 +1,7 @@
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\PrimeiroProjeto\AppInicial\bin\Release\net8.0\publish\AppInicial.exe
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\PrimeiroProjeto\AppInicial\bin\Release\net8.0\publish\AppInicial.dll
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\PrimeiroProjeto\AppInicial\bin\Release\net8.0\publish\AppInicial.deps.json
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\PrimeiroProjeto\AppInicial\bin\Release\net8.0\publish\AppInicial.runtimeconfig.json
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\PrimeiroProjeto\AppInicial\bin\Release\net8.0\publish\AppInicial.pdb
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\PrimeiroProjeto\AppInicial\bin\Release\net8.0\publish\Utils.dll
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\PrimeiroProjeto\AppInicial\bin\Release\net8.0\publish\Utils.pdb
