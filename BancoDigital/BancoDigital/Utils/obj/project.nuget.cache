@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "BdZWXhLLcvLkjqqm+VfK8zHKjXNMf8gi1dQrC70LWR5crP1rTWRZdrqHyKjBvJYUp8b1iYOjQ5c90isKMoo9Iw==",
+  "success": true,
+  "projectFilePath": "D:\\1Drive\\OneDrive - O Nosso Papel\\Dj Mib - OFFICE\\Prumma\\Treinamentos\\Programação WEB\\05 - DotNet\\BancoDigital\\BancoDigital\\Utils\\Utils.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\JoséFelipedosSantosL\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\JoséFelipedosSantosL\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

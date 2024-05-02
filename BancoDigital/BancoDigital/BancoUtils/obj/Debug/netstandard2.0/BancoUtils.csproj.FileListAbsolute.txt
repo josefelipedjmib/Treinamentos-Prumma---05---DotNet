@@ -1,0 +1,13 @@
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\bin\Debug\netstandard2.0\BancoUtils.deps.json
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\bin\Debug\netstandard2.0\BancoUtils.dll
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\bin\Debug\netstandard2.0\BancoUtils.pdb
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\bin\Debug\netstandard2.0\Utils.dll
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\bin\Debug\netstandard2.0\Utils.pdb
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\obj\Debug\netstandard2.0\BancoUtils.csproj.AssemblyReference.cache
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\obj\Debug\netstandard2.0\BancoUtils.GeneratedMSBuildEditorConfig.editorconfig
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\obj\Debug\netstandard2.0\BancoUtils.AssemblyInfoInputs.cache
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\obj\Debug\netstandard2.0\BancoUtils.AssemblyInfo.cs
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\obj\Debug\netstandard2.0\BancoUtils.csproj.CoreCompileInputs.cache
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\obj\Debug\netstandard2.0\BancoUtils.csproj.CopyComplete
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\obj\Debug\netstandard2.0\BancoUtils.dll
+D:\1Drive\OneDrive - O Nosso Papel\Dj Mib - OFFICE\Prumma\Treinamentos\Programação WEB\05 - DotNet\BancoDigital\BancoDigital\BancoUtils\obj\Debug\netstandard2.0\BancoUtils.pdb
