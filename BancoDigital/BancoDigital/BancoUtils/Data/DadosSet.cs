@@ -32,7 +32,7 @@ namespace BancoUtils.Data
             return Dados;
         }
 
-        public void Salvar(T dado)
+        public void Save(T dado)
         {
             if (dado.ID.Equals(0))
             {
@@ -51,6 +51,11 @@ namespace BancoUtils.Data
                     Dados[index] = dado;
                 }
             }
+        }
+
+        public bool Remove(T dado)
+        {
+            return Dados.Remove(dado);
         }
     }
 }

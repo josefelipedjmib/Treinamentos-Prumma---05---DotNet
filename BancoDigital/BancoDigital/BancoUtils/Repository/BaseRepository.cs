@@ -1,31 +1,36 @@
-﻿using BancoUtils.Entidade;
+﻿using BancoUtils.Data;
+using BancoUtils.Entidade;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BancoUtils.Repository
 {
-    public abstract class BaseRepository<T>
+    public abstract class BaseRepository<T> where T : IEntidade
     {
+        private DadosSet<T> _dadosSet;
+        public BaseRepository(DadosSet<T> dadosSet)
+        {
+            _dadosSet = dadosSet;
+        }
+
         public T Get(int id)
         {
-            return (T)Activator.CreateInstance(typeof(T), new object[] { });
+            return _dadosSet.Get(id);
         }
         public List<T> GetAll()
         {
-            var retorno = new List<T>();
-
-            return retorno;
+            return _dadosSet.GetAll();
         }
 
-        public void Save(T conta)
+        public void Save(T dado)
         {
-
+            _dadosSet.Save(dado);
         }
 
-        public void Remove(ContaBancaria conta)
+        public bool Remove(T dado)
         {
-
+            return _dadosSet.Remove(dado);
         }
     }
 }

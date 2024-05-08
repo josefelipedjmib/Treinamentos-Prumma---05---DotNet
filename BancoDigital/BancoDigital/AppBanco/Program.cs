@@ -1,28 +1,26 @@
 ﻿using BancoUtils.Data;
 using BancoUtils.Entidade;
- 
+using BancoUtils.Repository;
+using BancoUtils.Service;
+
 internal class Program
 {
     private static BancoContext _contexto { get; set; }
     private static void Main(string[] args)
     {
         _contexto = new BancoContext();
-
-        CadastrarPessoa();
-        CadastrarPessoa();
-        CadastrarPessoa();
+        var pessoaService = new PessoaService(_contexto);
+        CadastrarPessoa(pessoaService);
 
         Console.WriteLine("Total de Registros de Pessoas: " + _contexto.Pessoa.GetAll().Count());
 
         Console.WriteLine("Mostrando a primeira pessoa da Lista.");
-        var pessoaRegistrada = _contexto.Pessoa.GetAll().First();
-        MostrarPessoa(pessoaRegistrada);
-        pessoaRegistrada = _contexto.Pessoa.Get(3);
+        var pessoaRegistrada = pessoaService.GetAll().First();
         MostrarPessoa(pessoaRegistrada);
         Console.WriteLine("Fim do programa");
     }
 
-    private static void CadastrarPessoa()
+    private static void CadastrarPessoa(PessoaService pessoaService)
     {
 
         Console.WriteLine("Digite seu nome");
@@ -34,7 +32,7 @@ internal class Program
         Console.WriteLine("Digite seu cpf");
         var cpf = Console.ReadLine();
         var pessoa = new PessoaFisica(nome, email, dataNascimento, cpf);
-        _contexto.Pessoa.Salvar(pessoa);
+        pessoaService.Save(pessoa);
     }
 
     private static void MostrarPessoa (Pessoa pessoa)

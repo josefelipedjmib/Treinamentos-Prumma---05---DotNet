@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BancoUtils.Repository
 {
-    public class ContaRepository : BaseRepository<ContaBancaria>
+    public class ContaRepository //: BaseRepository<ContaBancaria>
     {
     }
 }
