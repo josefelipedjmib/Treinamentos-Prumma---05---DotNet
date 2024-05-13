@@ -1,21 +1,44 @@
 ﻿using BancoUtils.Entidade;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BancoUtils.Data
 {
-    public class BancoContext
+    public class BancoContext<T> where T : IEntidade
     {
-        public DadosSet<Pessoa> Pessoa { get; set; }
-        public DadosSet<ContaBancaria> Conta { get; set; }
-        public DadosSet<Transferencia> Transferencia { get; set; }
+        private DadosSet<T> _dados { get; set; }
 
         public BancoContext()
         {
-            Pessoa = new DadosSet<Pessoa>();
-            Conta = new DadosSet<ContaBancaria>();
-            Transferencia = new DadosSet<Transferencia>();
+            _dados = new DadosSet<T>();
+        }
+        public void Set(T dado)
+        {
+            _dados.Set(dado);
+        }
+
+        public void Set(List<T> list)
+        {
+            _dados.Set(list);
+        }
+
+        public T Get(int id)
+        {
+            return _dados.Get(id);
+        }
+
+        public List<T> GetAll()
+        {
+            return _dados.GetAll();
+        }
+
+        public void Save(T dado)
+        {
+            _dados.Save(dado);
+        }
+
+        public bool Remove(T dado)
+        {
+            return _dados.Remove(dado);
         }
     }
 }

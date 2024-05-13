@@ -6,12 +6,10 @@ using System.Text;
 
 namespace BancoUtils.Repository
 {
-    public class PessoaRepositoy : BaseRepository<Pessoa>
+    public class PessoaRepositoy<T> : BaseRepository<T> where T : IEntidade
     {
-        private BancoContext _bancoContext;
-        public PessoaRepositoy(BancoContext context) : base(context.Pessoa)
+        public PessoaRepositoy()
         {
-            _bancoContext = context;
         }
     }
 }
