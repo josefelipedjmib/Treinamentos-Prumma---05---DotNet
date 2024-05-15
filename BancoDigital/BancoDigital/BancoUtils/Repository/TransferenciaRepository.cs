@@ -5,7 +5,10 @@ using System.Text;
 
 namespace BancoUtils.Repository
 {
-    public class TransferenciaRepository //: BaseRepository<Transferencia>
+    public class TransferenciaRepository<T> : BaseRepository<T> where T : IEntidade
     {
+        public TransferenciaRepository()
+        {
+        }
     }
 }
