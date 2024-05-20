@@ -1,4 +1,5 @@
-﻿using BancoUtils.Entidade;
+﻿using BancoUtils.Data;
+using BancoUtils.Entidade;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -8,7 +9,7 @@ namespace BancoUtils.Repository
 {
     public class ContaRepository<T> : BaseRepository<T> where T : IEntidade
     {
-        public ContaRepository()
+        public ContaRepository(BancoContext<T> context) : base(context)
         {
         }
     }

@@ -1,4 +1,5 @@
-﻿using BancoUtils.Entidade;
+﻿using BancoUtils.Data;
+using BancoUtils.Entidade;
 using BancoUtils.Repository;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace BancoUtils.Service
 {
     public class ContaService : BaseService<ContaBancaria>
     {
-        public ContaService() : base(new ContaRepository<ContaBancaria>())
+        public ContaService(BancoContext<ContaBancaria> context) : base(new ContaRepository<ContaBancaria>(context))
         {
         }
 

@@ -21,5 +21,12 @@ namespace Utils
             decimal.TryParse(numeroEmTexto, out numero);
             return numero;
         }
+        public static int TextoParaInt(string numeroEmTexto)
+        {
+            numeroEmTexto = numeroEmTexto.Replace(".", "").Replace("-", "").Replace("/", "");
+            var numero = 0;
+            int.TryParse(numeroEmTexto, out numero);
+            return numero;
+        }
     }
 }

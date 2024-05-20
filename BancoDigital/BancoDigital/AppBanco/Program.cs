@@ -1,4 +1,5 @@
 ﻿using AppBanco;
+using BancoUtils.Data;
 using BancoUtils.Entidade;
 using BancoUtils.Service;
 using Utils;
@@ -7,9 +8,13 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var _pessoaService = new PessoaService();
-        var _contaService = new ContaService();
-        var _trasferenciaService = new TransferenciaService();
+        var contextoPessoa = new BancoContext<Pessoa>();
+        var contextoConta = new BancoContext<ContaBancaria>();
+        var contextoTransferencia = new BancoContext<Transferencia>();
+        var _pessoaService = new PessoaService(contextoPessoa);
+        var _contaService = new ContaService(contextoConta);
+        var _trasferenciaService = new TransferenciaService(contextoTransferencia, _contaService);
+
         try
         {
             string opcao = "";
@@ -20,10 +25,13 @@ internal class Program
                 ColouredConsole.WriteLine("---- [S] => sair do aplicativo ----");
                 ColouredConsole.WriteLine("---- [P] => Cadastrar Pessoa ----");
                 ColouredConsole.WriteLine("---- [LP] => Listar Pessoa ----");
+                ColouredConsole.WriteLine("---- [RP] => Remover Pessoa ----");
                 ColouredConsole.WriteLine("---- [C] => Cadastrar Conta ----");
                 ColouredConsole.WriteLine("---- [LC] => Listar Conta ----");
+                ColouredConsole.WriteLine("---- [RC] => Remover Conta ----");
                 ColouredConsole.WriteLine("---- [T] => Cadastrar Transferência ----");
                 ColouredConsole.WriteLine("---- [LT] => Listar Transferência ----");
+                ColouredConsole.WriteLine("---- [RT] => Remover Transferência ----");
                 opcao = Console.ReadLine().Trim().ToLower();
                 try
                 {
@@ -35,6 +43,9 @@ internal class Program
                             break;
                         case "lp":
                             MostrarPessoa(_pessoaService);
+                            break;
+                        case "rp":
+                            RemoverPessoa(_pessoaService);
                             break;
                         case "c":
                             CadastrarConta(_contaService, _pessoaService);
@@ -82,16 +93,30 @@ internal class Program
         pessoaService.Save(pessoa);
     }
 
+    private static void RemoverPessoa(PessoaService pessoaService)
+    {
+        MostrarPessoa(pessoaService);
+        ColouredConsole.WriteLine("Digite o ID  que gostaria de remover");
+        var id = Console.ReadLine();
+        var pessoa = pessoaService.Get(Numero.TextoParaInt(id));
+        if(pessoa != null)
+        {
+            pessoaService.Remove(pessoa);
+        }
+    }
+
     private static void MostrarPessoa (PessoaService pessoaService)
     {
-        var pessoa = pessoaService.GetAll().LastOrDefault();
+        var pessoas = pessoaService.GetAll();
         ColouredConsole.WriteLine("Mostrando Pessoas!");
-        ColouredConsole.WriteLine("Total de Registros de Pessoas: " + pessoaService.GetAll().Count());
-        ColouredConsole.WriteLine($"ID {pessoa.ID} - Nome {pessoa.Nome} - Email {pessoa.Email} - CPF {((PessoaFisica) pessoa).CPF}");
+        ColouredConsole.WriteLine("Total de Registros de Pessoas: " + pessoas.Count());
+        foreach(var pessoa in pessoas)
+        {
+            ColouredConsole.WriteLine($"ID {pessoa.ID} - Nome {pessoa.Nome} - Email {pessoa.Email} - CPF {((PessoaFisica)pessoa).CPF}");
+        }
     }
     private static void CadastrarConta(ContaService contaService, PessoaService pessoaService)
     {
-
         ColouredConsole.WriteLine("Digite o ID da Pessoa");
         var idPessoa = Console.ReadLine();
         ColouredConsole.WriteLine("Digite o valor inicial da conta");
@@ -104,10 +129,13 @@ internal class Program
 
     private static void MostrarConta(ContaService contaService)
     {
-        var conta = contaService.GetAll().LastOrDefault();
+        var contas = contaService.GetAll();
         ColouredConsole.WriteLine("Mostrando contas!");
-        ColouredConsole.WriteLine("Total de Registros de Contas: " + contaService.GetAll().Count());
-        ColouredConsole.WriteLine($"ID {conta.ID} - Nome do Titular {conta.Pessoa.Nome} - Valor {conta.Valor}");
+        ColouredConsole.WriteLine("Total de Registros de Contas: " + contas.Count());
+        foreach(var conta in contas)
+        {
+            ColouredConsole.WriteLine($"ID {conta.ID} - Nome do Titular {conta.Pessoa.Nome} - Valor {conta.Valor}");
+        }
     }
     private static void CadastrarTransferencia(TransferenciaService transferenciaService, ContaService contaService)
     {
@@ -129,9 +157,12 @@ internal class Program
 
     private static void MostrarTransferencia(TransferenciaService transferenciaService)
     {
-        var transferencia = transferenciaService.GetAll().LastOrDefault();
+        var transferencias = transferenciaService.GetAll();
         ColouredConsole.WriteLine("Mostrando transferência!");
-        ColouredConsole.WriteLine("Total de Registros de Transferências: " + transferenciaService.GetAll().Count());
-        ColouredConsole.WriteLine($"ID {transferencia.ID} - Nome do Remetente {transferencia.Remetente.Pessoa.Nome} - Nome Destinatário {transferencia.Destinatario.Pessoa.Nome} - Valor {transferencia.Valor} - Tipo {transferencia.Tipo}");
+        ColouredConsole.WriteLine("Total de Registros de Transferências: " + transferencias.Count());
+        foreach(var transferencia in transferencias)
+        {
+            ColouredConsole.WriteLine($"ID {transferencia.ID} - Nome do Remetente {transferencia.Remetente.Pessoa.Nome} - Nome Destinatário {transferencia.Destinatario.Pessoa.Nome} - Valor {transferencia.Valor} - Tipo {transferencia.Tipo}");
+        }
     }
 }

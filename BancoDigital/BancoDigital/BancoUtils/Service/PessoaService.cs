@@ -7,7 +7,7 @@ namespace BancoUtils.Service
 {
     public class PessoaService : BaseService<Pessoa>
     {
-        public PessoaService() : base(new PessoaRepositoy<Pessoa>())
+        public PessoaService(BancoContext<Pessoa> context) : base(new PessoaRepositoy<Pessoa>(context))
         {
         }
     }

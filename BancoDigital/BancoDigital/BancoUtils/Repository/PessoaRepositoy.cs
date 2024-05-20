@@ -8,7 +8,7 @@ namespace BancoUtils.Repository
 {
     public class PessoaRepositoy<T> : BaseRepository<T> where T : IEntidade
     {
-        public PessoaRepositoy()
+        public PessoaRepositoy(BancoContext<T> context) : base(context)
         {
         }
     }

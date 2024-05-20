@@ -7,9 +7,9 @@ namespace BancoUtils.Repository
     public abstract class BaseRepository<T> where T : IEntidade
     {
         protected BancoContext<T> _context;
-        public BaseRepository()
+        public BaseRepository(BancoContext<T> bancoContext)
         {
-            _context =  new BancoContext<T>();
+            _context = bancoContext;
         }
 
         public T Get(int id)
