@@ -33,6 +33,7 @@ internal class Program
                 ColouredConsole.WriteLine("---- [RC] => Remover Conta ----");
                 ColouredConsole.WriteLine("---- [T] => Cadastrar Transferência ----");
                 ColouredConsole.WriteLine("---- [LT] => Listar Transferência ----");
+                ColouredConsole.WriteLine("---- [RT] => Remover Transferência ----");
                 opcao = Console.ReadLine().Trim().ToLower();
                 try
                 {
@@ -70,6 +71,9 @@ internal class Program
                             break;
                         case "lt":
                             MostrarTransferencia(_trasferenciaService);
+                            break;
+                        case "rt":
+                            RemoverTranasferencia(_trasferenciaService);
                             break;
                     }
                 }
