@@ -25,13 +25,14 @@ internal class Program
                 ColouredConsole.WriteLine("---- [S] => sair do aplicativo ----");
                 ColouredConsole.WriteLine("---- [P] => Cadastrar Pessoa ----");
                 ColouredConsole.WriteLine("---- [LP] => Listar Pessoa ----");
+                ColouredConsole.WriteLine("---- [EP] => Editar Pessoa ----");
                 ColouredConsole.WriteLine("---- [RP] => Remover Pessoa ----");
                 ColouredConsole.WriteLine("---- [C] => Cadastrar Conta ----");
                 ColouredConsole.WriteLine("---- [LC] => Listar Conta ----");
+                ColouredConsole.WriteLine("---- [EC] => Editar Conta ----");
                 ColouredConsole.WriteLine("---- [RC] => Remover Conta ----");
                 ColouredConsole.WriteLine("---- [T] => Cadastrar Transferência ----");
                 ColouredConsole.WriteLine("---- [LT] => Listar Transferência ----");
-                ColouredConsole.WriteLine("---- [RT] => Remover Transferência ----");
                 opcao = Console.ReadLine().Trim().ToLower();
                 try
                 {
@@ -44,6 +45,9 @@ internal class Program
                         case "lp":
                             MostrarPessoa(_pessoaService);
                             break;
+                        case "ep":
+                            EditarPessoa(_pessoaService);
+                            break;
                         case "rp":
                             RemoverPessoa(_pessoaService);
                             break;
@@ -53,6 +57,12 @@ internal class Program
                             break;
                         case "lc":
                             MostrarConta(_contaService);
+                            break;
+                        case "ec":
+                            EditarConta(_contaService);
+                            break;
+                        case "rc":
+                            RemoverConta(_contaService);
                             break;
                         case "t":
                             CadastrarTransferencia(_trasferenciaService, _contaService);
@@ -78,6 +88,8 @@ internal class Program
         }
     }
 
+ 
+
     private static void CadastrarPessoa(PessoaService pessoaService)
     {
 
@@ -93,23 +105,69 @@ internal class Program
         pessoaService.Save(pessoa);
     }
 
+    private static void EditarPessoa(PessoaService pessoaService)
+    {
+        var pessoa = (PessoaFisica?) EscolherPessoaAlterar(pessoaService);
+        if (pessoa != null)
+        {
+            var texto = "";
+            ColouredConsole.WriteLine("Nome: " + pessoa.Nome);
+            ColouredConsole.WriteLine("Digite outro valor para alterar, ou deixar em branco para manter.");
+            texto = Console.ReadLine();
+            if (!string.IsNullOrEmpty(texto))
+                pessoa.Nome = texto;
+            ColouredConsole.WriteLine("E-mail: " + pessoa.Email);
+            ColouredConsole.WriteLine("Digite outro valor para alterar, ou deixar em branco para manter.");
+            texto = Console.ReadLine();
+            if (!string.IsNullOrEmpty(texto))
+                pessoa.Email = texto;
+            ColouredConsole.WriteLine("Data de Nascimento: " + pessoa.DataNascimento);
+            ColouredConsole.WriteLine("Digite outro valor para alterar, ou deixar em branco para manter.");
+            texto = Console.ReadLine();
+            if (!string.IsNullOrEmpty(texto))
+                pessoa.DataNascimento = DateTime.Parse(texto);
+            ColouredConsole.WriteLine("CPF: " + pessoa.CPF);
+            ColouredConsole.WriteLine("Digite outro valor para alterar, ou deixar em branco para manter.");
+            texto = Console.ReadLine();
+            if (!string.IsNullOrEmpty(texto))
+                pessoa.CPF = texto;
+            pessoaService.Save(pessoa);
+            ColouredConsole.WriteLine($"Pessoa ID - {pessoa.ID} - nome {pessoa.Nome} - alterada com sucesso!");
+        }
+        else
+        {
+            ColouredConsole.WriteLine("ID de pessoa inexistente.");
+        }
+
+    }
+
     private static void RemoverPessoa(PessoaService pessoaService)
     {
-        MostrarPessoa(pessoaService);
-        ColouredConsole.WriteLine("Digite o ID  que gostaria de remover");
-        var id = Console.ReadLine();
-        var pessoa = pessoaService.Get(Numero.TextoParaInt(id));
+        var pessoa = EscolherPessoaAlterar(pessoaService);
         if(pessoa != null)
         {
             pessoaService.Remove(pessoa);
+            ColouredConsole.WriteLine($"Pessoa ID - {pessoa.ID} - nome {pessoa.Nome} - removido com sucesso!");
         }
+        else
+        {
+            ColouredConsole.WriteLine("ID de pessoa inexistente.");
+        }
+    }
+
+    private static Pessoa? EscolherPessoaAlterar(PessoaService pessoaService)
+    {
+        MostrarPessoa(pessoaService);
+        ColouredConsole.WriteLine("Digite o ID  que gostaria de alterar.");
+        var id = Console.ReadLine();
+        return pessoaService.Get(Numero.TextoParaInt(id));
     }
 
     private static void MostrarPessoa (PessoaService pessoaService)
     {
         var pessoas = pessoaService.GetAll();
         ColouredConsole.WriteLine("Mostrando Pessoas!");
-        ColouredConsole.WriteLine("Total de Registros de Pessoas: " + pessoas.Count());
+        ColouredConsole.WriteLine("Total de Registro" + (pessoas.Count() > 1 ? "s" : "") + " de Pessoas: " + pessoas.Count());
         foreach(var pessoa in pessoas)
         {
             ColouredConsole.WriteLine($"ID {pessoa.ID} - Nome {pessoa.Nome} - Email {pessoa.Email} - CPF {((PessoaFisica)pessoa).CPF}");
@@ -131,12 +189,60 @@ internal class Program
     {
         var contas = contaService.GetAll();
         ColouredConsole.WriteLine("Mostrando contas!");
-        ColouredConsole.WriteLine("Total de Registros de Contas: " + contas.Count());
+        ColouredConsole.WriteLine("Total de Registro" + (contas.Count() > 1 ? "s" : "") + " de Contas: " + contas.Count());
         foreach(var conta in contas)
         {
             ColouredConsole.WriteLine($"ID {conta.ID} - Nome do Titular {conta.Pessoa.Nome} - Valor {conta.Valor}");
         }
     }
+
+    private static ContaBancaria EscolherContaAlterar(ContaService contaService)
+    {
+        MostrarConta(contaService);
+        ColouredConsole.WriteLine("Digite o ID  que gostaria de alterar.");
+        var id = Console.ReadLine();
+        return contaService.Get(Numero.TextoParaInt(id)); ;
+    }
+
+    private static void EditarConta(ContaService contaService)
+    {
+        var conta = (ContaPoupanca?)EscolherContaAlterar(contaService);
+        if (conta != null)
+        {
+            var texto = "";
+            ColouredConsole.WriteLine("Tipo: " + conta.Tipo);
+            ColouredConsole.WriteLine("Digite outro valor para alterar, ou deixar em branco para manter.");
+            texto = Console.ReadLine();
+            if (!string.IsNullOrEmpty(texto))
+                conta.Tipo = Numero.TextoParaInt(texto);
+            ColouredConsole.WriteLine("Valor: " + conta.Valor);
+            ColouredConsole.WriteLine("Digite outro valor para alterar, ou deixar em branco para manter.");
+            texto = Console.ReadLine();
+            if (!string.IsNullOrEmpty(texto))
+                conta.Valor = Numero.TextoParaDecimal(texto);  
+            contaService.Save(conta);
+            ColouredConsole.WriteLine($"Conta ID - {conta.ID} - Nome {conta.Pessoa.Nome} - alterada com sucesso!");
+        }
+        else
+        {
+            ColouredConsole.WriteLine("ID de conta inexistente.");
+        }
+    }
+
+    private static void RemoverConta(ContaService contaService)
+    {
+        var contaDelete = EscolherContaAlterar(contaService);
+        if (contaDelete != null)
+        {
+            contaService.Remove(contaDelete);
+            ColouredConsole.WriteLine($"Conta ID - {contaDelete.ID} - Nome {contaDelete.Pessoa.Nome} - removido com sucesso!");
+        }
+        else
+        {
+            ColouredConsole.WriteLine("ID de conta inexistente.");
+        }
+    }
+
     private static void CadastrarTransferencia(TransferenciaService transferenciaService, ContaService contaService)
     {
         ColouredConsole.WriteLine("Digite o ID da Conta Remetente");
@@ -159,10 +265,49 @@ internal class Program
     {
         var transferencias = transferenciaService.GetAll();
         ColouredConsole.WriteLine("Mostrando transferência!");
-        ColouredConsole.WriteLine("Total de Registros de Transferências: " + transferencias.Count());
+        ColouredConsole.WriteLine("Total de Registro" + (transferencias.Count() > 1 ? "s" : "") + " de Transferências: " + transferencias.Count());
         foreach(var transferencia in transferencias)
         {
             ColouredConsole.WriteLine($"ID {transferencia.ID} - Nome do Remetente {transferencia.Remetente.Pessoa.Nome} - Nome Destinatário {transferencia.Destinatario.Pessoa.Nome} - Valor {transferencia.Valor} - Tipo {transferencia.Tipo}");
+        }
+    }
+
+    private static Transferencia EscolherTransferenciaAlterar(TransferenciaService transferenciaService)
+    {
+        MostrarTransferencia(transferenciaService);
+        ColouredConsole.WriteLine("Digite o ID  que gostaria de alterar.");
+        var id = Console.ReadLine();
+        return transferenciaService.Get(Numero.TextoParaInt(id)); ;
+    }
+
+    private static void EditarTranasferencia(TransferenciaService transferenciaService)
+    {
+        var transferencia = EscolherTransferenciaAlterar(transferenciaService);
+        if (transferencia != null)
+        {
+            var texto = "";
+            ColouredConsole.WriteLine("Tipo: ");
+            ColouredConsole.WriteLine("Digite outro valor para alterar, ou deixar em branco para manter.");
+            texto = Console.ReadLine();
+            if (!string.IsNullOrEmpty(texto)) { }
+        }
+        else
+        {
+            ColouredConsole.WriteLine("ID de transferencia inexistente.");
+        }
+    }
+
+    private static void RemoverTranasferencia(TransferenciaService transferenciaService)
+    {
+        var transferencia = EscolherTransferenciaAlterar(transferenciaService);
+        if (transferencia != null)
+        {
+            transferenciaService.Remove(transferencia);
+            ColouredConsole.WriteLine($"Transferencia ID - {transferencia.ID} - Remetente {transferencia.Remetente.Pessoa.Nome} - Destinatário {transferencia.Destinatario.Pessoa.Nome}");
+        }
+        else
+        {
+            ColouredConsole.WriteLine("ID da transnferência inexistente.");
         }
     }
 }
