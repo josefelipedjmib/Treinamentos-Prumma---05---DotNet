@@ -7,21 +7,6 @@ namespace BancoUtils.Entidade
     {
         public PessoaFisica() { }
 
-        public PessoaFisica(string nome, string email, DateTime dataNascimento)
-        {
-            Nome = nome;
-            Email = email;
-            DataNascimento = dataNascimento;
-        }
-
-        public PessoaFisica(string nome, string email, DateTime dataNascimento, string cpf)
-        {
-            Nome = nome;
-            Email = email;
-            DataNascimento = dataNascimento;
-            CPF = cpf;
-        }
-
         private int documentoComprimento = 11;
 
         public string CPF {

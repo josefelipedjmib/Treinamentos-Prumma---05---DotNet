@@ -40,5 +40,10 @@ namespace BancoUtils.Data
         {
             return _dados.Remove(dado);
         }
+
+        public void Import(List<T> list)
+        {
+            _dados.Import(list);
+        }
     }
 }

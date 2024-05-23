@@ -2,18 +2,22 @@
 using BancoUtils.Data;
 using BancoUtils.Entidade;
 using BancoUtils.Service;
+using System.Text.Json;
 using Utils;
 
 internal class Program
 {
+    private static BancoContext<Pessoa> _contextoPessoa;
+    private static BancoContext<ContaBancaria> _contextoConta;
+    private static BancoContext<Transferencia> _contextoTransferencia;
     private static void Main(string[] args)
     {
-        var contextoPessoa = new BancoContext<Pessoa>();
-        var contextoConta = new BancoContext<ContaBancaria>();
-        var contextoTransferencia = new BancoContext<Transferencia>();
-        var _pessoaService = new PessoaService(contextoPessoa);
-        var _contaService = new ContaService(contextoConta);
-        var _trasferenciaService = new TransferenciaService(contextoTransferencia, _contaService);
+        _contextoPessoa = new BancoContext<Pessoa>();
+        _contextoConta = new BancoContext<ContaBancaria>();
+        _contextoTransferencia = new BancoContext<Transferencia>();
+        var pessoaService = new PessoaService(_contextoPessoa);
+        var contaService = new ContaService(_contextoConta);
+        var trasferenciaService = new TransferenciaService(_contextoTransferencia, contaService);
 
         try
         {
@@ -23,6 +27,8 @@ internal class Program
                 ColouredConsole.WriteLine("");
                 ColouredConsole.WriteLine("---- Escolha a ação que deseja fazer ----");
                 ColouredConsole.WriteLine("---- [S] => sair do aplicativo ----");
+                ColouredConsole.WriteLine("---- [I] => Importar Dados ----");
+                ColouredConsole.WriteLine("---- [E] => Exportar Dados ----");
                 ColouredConsole.WriteLine("---- [P] => Cadastrar Pessoa ----");
                 ColouredConsole.WriteLine("---- [LP] => Listar Pessoa ----");
                 ColouredConsole.WriteLine("---- [EP] => Editar Pessoa ----");
@@ -40,40 +46,46 @@ internal class Program
                     switch(opcao)
                     {
                         case "p":
-                            CadastrarPessoa(_pessoaService);
-                            MostrarPessoa(_pessoaService);
+                            CadastrarPessoa(pessoaService);
+                            MostrarPessoa(pessoaService);
+                            break;
+                        case "i":
+                            ImportarDados();
+                            break;
+                        case "e":
+                            ExportarDados();
                             break;
                         case "lp":
-                            MostrarPessoa(_pessoaService);
+                            MostrarPessoa(pessoaService);
                             break;
                         case "ep":
-                            EditarPessoa(_pessoaService);
+                            EditarPessoa(pessoaService);
                             break;
                         case "rp":
-                            RemoverPessoa(_pessoaService);
+                            RemoverPessoa(pessoaService);
                             break;
                         case "c":
-                            CadastrarConta(_contaService, _pessoaService);
-                            MostrarConta(_contaService);
+                            CadastrarConta(contaService, pessoaService);
+                            MostrarConta(contaService);
                             break;
                         case "lc":
-                            MostrarConta(_contaService);
+                            MostrarConta(contaService);
                             break;
                         case "ec":
-                            EditarConta(_contaService);
+                            EditarConta(contaService);
                             break;
                         case "rc":
-                            RemoverConta(_contaService);
+                            RemoverConta(contaService);
                             break;
                         case "t":
-                            CadastrarTransferencia(_trasferenciaService, _contaService);
-                            MostrarTransferencia(_trasferenciaService);
+                            CadastrarTransferencia(trasferenciaService, contaService);
+                            MostrarTransferencia(trasferenciaService);
                             break;
                         case "lt":
-                            MostrarTransferencia(_trasferenciaService);
+                            MostrarTransferencia(trasferenciaService);
                             break;
                         case "rt":
-                            RemoverTranasferencia(_trasferenciaService);
+                            RemoverTranasferencia(trasferenciaService);
                             break;
                     }
                 }
@@ -92,7 +104,42 @@ internal class Program
         }
     }
 
- 
+    private static void ExportarDados()
+    {
+        var contextos = new Dictionary<string, string>();
+        contextos.Add("conta", JsonSerializer.Serialize(_contextoConta.GetAll()));
+        contextos.Add("pessoa", JsonSerializer.Serialize(_contextoPessoa.GetAll()));
+        contextos.Add("transferencia", JsonSerializer.Serialize(_contextoTransferencia.GetAll()));
+        Arquivo.Salvar(JsonSerializer.Serialize(contextos));
+    }
+
+    private static void ImportarDados()
+    {
+        var texto = Arquivo.Ler();
+        var contextos = JsonSerializer.Deserialize<Dictionary<string, string>>(texto);
+        if(contextos != null)
+        {
+            var valor = "";
+            if (contextos.TryGetValue("conta", out valor))
+            {
+                _contextoConta.Import(JsonSerializer.Deserialize<List<ContaBancaria>>(valor));
+            }
+            valor = "";
+            if (contextos.TryGetValue("pessoa", out valor))
+            {
+                var lista = JsonSerializer.Deserialize<List<PessoaFisica>>(valor);
+                foreach (var dado in lista)
+                {
+                    _contextoPessoa.Set(dado);
+                }
+            }
+            valor = "";
+            if (contextos.TryGetValue("transferencia", out valor))
+            {
+                _contextoTransferencia.Import(JsonSerializer.Deserialize<List<Transferencia>>(valor));
+            }
+        }
+    }
 
     private static void CadastrarPessoa(PessoaService pessoaService)
     {
@@ -105,7 +152,13 @@ internal class Program
         var dataNascimento = DateTime.Parse(Console.ReadLine());
         ColouredConsole.WriteLine("Digite seu cpf");
         var cpf = Console.ReadLine();
-        var pessoa = new PessoaFisica(nome, email, dataNascimento, cpf);
+        var pessoa = new PessoaFisica()
+        {
+            Nome = nome,
+            Email = email,
+            DataNascimento = dataNascimento,
+            CPF = cpf
+        };
         pessoaService.Save(pessoa);
     }
 
