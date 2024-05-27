@@ -5,13 +5,13 @@ VisualStudioVersion = 17.8.34601.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppBanco", "AppBanco\AppBanco.csproj", "{A962BEF2-18AC-4D20-BEA3-168D40277552}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "Utils\Utils.csproj", "{4F5CC85D-9801-40FC-A035-C9927E7DF976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "..\..\0Compartilhado\Utils\Utils.csproj", "{4F5CC85D-9801-40FC-A035-C9927E7DF976}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoUtils", "BancoUtils\BancoUtils.csproj", "{EA5E6F56-74FA-4839-8539-C4B5AE3B884E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoUtils", "..\..\0Compartilhado\BancoUtils\BancoUtils.csproj", "{EA5E6F56-74FA-4839-8539-C4B5AE3B884E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoDigital.Data", "BancoDigital.Data\BancoDigital.Data.csproj", "{43919AD5-EEB1-4F27-8FFC-A1527EF0671C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoDigital.Data", "..\..\0Compartilhado\BancoDigital.Data\BancoDigital.Data.csproj", "{43919AD5-EEB1-4F27-8FFC-A1527EF0671C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoDigital.Service", "BancoDigital.Service\BancoDigital.Service.csproj", "{2E38D157-66FC-4397-9B18-A3AE9FBE21A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoDigital.Service", "..\..\0Compartilhado\BancoDigital.Service\BancoDigital.Service.csproj", "{2E38D157-66FC-4397-9B18-A3AE9FBE21A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

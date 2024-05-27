@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\0Compartilhado\BancoDigital.Service\BancoDigital.Service.csproj" />
+    <ProjectReference Include="..\..\..\0Compartilhado\BancoUtils\BancoUtils.csproj" />
+    <ProjectReference Include="..\..\..\0Compartilhado\Utils\Utils.csproj" />
     <ProjectReference Include="..\BancoDigital.Service\BancoDigital.Service.csproj" />
     <ProjectReference Include="..\BancoUtils\BancoUtils.csproj" />
     <ProjectReference Include="..\Utils\Utils.csproj" />
