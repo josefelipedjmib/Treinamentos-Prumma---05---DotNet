@@ -1,10 +1,8 @@
-﻿using BancoUtils.Entidade;
-using BancoUtils.Repository;
-using System;
+﻿using BancoDigital.Data.Repository;
+using BancoUtils.Entidade;
 using System.Collections.Generic;
-using System.Text;
 
-namespace BancoUtils.Service
+namespace BancoDigital.Service.Service
 {
     public abstract class BaseService<T> where T : IEntidade
     {

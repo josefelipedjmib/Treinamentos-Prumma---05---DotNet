@@ -1,23 +1,19 @@
 ﻿using AppBanco;
-using BancoUtils.Data;
+using BancoDigital.Service.Service;
 using BancoUtils.Entidade;
-using BancoUtils.Service;
 using System.Text.Json;
 using Utils;
 
 internal class Program
 {
-    private static BancoContext<Pessoa> _contextoPessoa;
-    private static BancoContext<ContaBancaria> _contextoConta;
-    private static BancoContext<Transferencia> _contextoTransferencia;
+    private static PessoaService _pessoaService;
+    private static ContaService _contaService;
+    private static TransferenciaService _transferenciaService;
     private static void Main(string[] args)
     {
-        _contextoPessoa = new BancoContext<Pessoa>();
-        _contextoConta = new BancoContext<ContaBancaria>();
-        _contextoTransferencia = new BancoContext<Transferencia>();
-        var pessoaService = new PessoaService(_contextoPessoa);
-        var contaService = new ContaService(_contextoConta);
-        var trasferenciaService = new TransferenciaService(_contextoTransferencia, contaService);
+        _pessoaService = new PessoaService();
+        _contaService = new ContaService();
+        _transferenciaService = new TransferenciaService(_contaService);
 
         try
         {
@@ -46,8 +42,8 @@ internal class Program
                     switch(opcao)
                     {
                         case "p":
-                            CadastrarPessoa(pessoaService);
-                            MostrarPessoa(pessoaService);
+                            CadastrarPessoa(_pessoaService);
+                            MostrarPessoa(_pessoaService);
                             break;
                         case "i":
                             ImportarDados();
@@ -56,36 +52,36 @@ internal class Program
                             ExportarDados();
                             break;
                         case "lp":
-                            MostrarPessoa(pessoaService);
+                            MostrarPessoa(_pessoaService);
                             break;
                         case "ep":
-                            EditarPessoa(pessoaService);
+                            EditarPessoa(_pessoaService);
                             break;
                         case "rp":
-                            RemoverPessoa(pessoaService);
+                            RemoverPessoa(_pessoaService);
                             break;
                         case "c":
-                            CadastrarConta(contaService, pessoaService);
-                            MostrarConta(contaService);
+                            CadastrarConta(_contaService, _pessoaService);
+                            MostrarConta(_contaService);
                             break;
                         case "lc":
-                            MostrarConta(contaService);
+                            MostrarConta(_contaService);
                             break;
                         case "ec":
-                            EditarConta(contaService);
+                            EditarConta(_contaService);
                             break;
                         case "rc":
-                            RemoverConta(contaService);
+                            RemoverConta(_contaService);
                             break;
                         case "t":
-                            CadastrarTransferencia(trasferenciaService, contaService);
-                            MostrarTransferencia(trasferenciaService);
+                            CadastrarTransferencia(_transferenciaService, _contaService);
+                            MostrarTransferencia(_transferenciaService);
                             break;
                         case "lt":
-                            MostrarTransferencia(trasferenciaService);
+                            MostrarTransferencia(_transferenciaService);
                             break;
                         case "rt":
-                            RemoverTranasferencia(trasferenciaService);
+                            RemoverTranasferencia(_transferenciaService);
                             break;
                     }
                 }
@@ -107,9 +103,9 @@ internal class Program
     private static void ExportarDados()
     {
         var contextos = new Dictionary<string, string>();
-        contextos.Add("conta", JsonSerializer.Serialize(_contextoConta.GetAll()));
-        contextos.Add("pessoa", JsonSerializer.Serialize(_contextoPessoa.GetAll()));
-        contextos.Add("transferencia", JsonSerializer.Serialize(_contextoTransferencia.GetAll()));
+        contextos.Add("conta", JsonSerializer.Serialize(_contaService.GetAll()));
+        contextos.Add("pessoa", JsonSerializer.Serialize(_pessoaService.GetAll()));
+        contextos.Add("transferencia", JsonSerializer.Serialize(_transferenciaService.GetAll()));
         Arquivo.Salvar(JsonSerializer.Serialize(contextos));
     }
 
@@ -122,7 +118,7 @@ internal class Program
             var valor = "";
             if (contextos.TryGetValue("conta", out valor))
             {
-                _contextoConta.Import(JsonSerializer.Deserialize<List<ContaBancaria>>(valor));
+                //_contaService.Import(JsonSerializer.Deserialize<List<ContaBancaria>>(valor));
             }
             valor = "";
             if (contextos.TryGetValue("pessoa", out valor))
@@ -130,13 +126,13 @@ internal class Program
                 var lista = JsonSerializer.Deserialize<List<PessoaFisica>>(valor);
                 foreach (var dado in lista)
                 {
-                    _contextoPessoa.Set(dado);
+                    _pessoaService.Save(dado);
                 }
             }
             valor = "";
             if (contextos.TryGetValue("transferencia", out valor))
             {
-                _contextoTransferencia.Import(JsonSerializer.Deserialize<List<Transferencia>>(valor));
+                //_transferenciaService.Import(JsonSerializer.Deserialize<List<Transferencia>>(valor));
             }
         }
     }

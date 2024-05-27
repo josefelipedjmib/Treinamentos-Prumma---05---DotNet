@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BancoUtils.Data
+namespace BancoDigital.Data
 {
     public class DadosSet<T> where T : IEntidade
     {
-        public DadosSet() 
-        { 
-            Dados =  new List<T>();
+        public DadosSet()
+        {
+            Dados = new List<T>();
         }
 
         private List<T> Dados { get; set; }
@@ -45,7 +45,7 @@ namespace BancoUtils.Data
             else
             {
                 var dadoAtualizar = Get(dado.ID);
-                if(dadoAtualizar != null)
+                if (dadoAtualizar != null)
                 {
                     var index = Dados.IndexOf(dadoAtualizar);
                     Dados[index] = dado;

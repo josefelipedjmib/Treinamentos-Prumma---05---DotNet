@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BancoDigital.Data\BancoDigital.Data.csproj" />
+    <ProjectReference Include="..\BancoUtils\BancoUtils.csproj" />
+  </ItemGroup>
+
+</Project>

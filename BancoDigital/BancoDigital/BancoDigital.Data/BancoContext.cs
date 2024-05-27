@@ -1,7 +1,7 @@
 ﻿using BancoUtils.Entidade;
 using System.Collections.Generic;
 
-namespace BancoUtils.Data
+namespace BancoDigital.Data
 {
     public class BancoContext<T> where T : IEntidade
     {

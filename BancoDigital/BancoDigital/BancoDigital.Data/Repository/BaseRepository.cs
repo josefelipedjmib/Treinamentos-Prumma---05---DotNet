@@ -1,8 +1,7 @@
-﻿using BancoUtils.Data;
-using BancoUtils.Entidade;
+﻿using BancoUtils.Entidade;
 using System.Collections.Generic;
 
-namespace BancoUtils.Repository
+namespace BancoDigital.Data.Repository
 {
     public abstract class BaseRepository<T> where T : IEntidade
     {

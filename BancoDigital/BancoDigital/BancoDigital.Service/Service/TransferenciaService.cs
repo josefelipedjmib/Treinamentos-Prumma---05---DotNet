@@ -1,16 +1,14 @@
-﻿using BancoUtils.Data;
+﻿using BancoDigital.Data;
+using BancoDigital.Data.Repository;
 using BancoUtils.Entidade;
-using BancoUtils.Repository;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace BancoUtils.Service
+namespace BancoDigital.Service.Service
 {
     public class TransferenciaService : BaseService<Transferencia>
     {
         private ContaService _contaService;
-        public TransferenciaService(BancoContext<Transferencia> context, ContaService contaService) : base(new TransferenciaRepository<Transferencia>(context))
+        public TransferenciaService(ContaService contaService) : base(new TransferenciaRepository<Transferencia>(new BancoContext<Transferencia>()))
         {
             _contaService = contaService;
         }

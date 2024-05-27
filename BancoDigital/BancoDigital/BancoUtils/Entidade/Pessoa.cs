@@ -1,4 +1,5 @@
 ﻿using System;
+using Utils;
 
 namespace BancoUtils.Entidade
 {
@@ -12,7 +13,7 @@ namespace BancoUtils.Entidade
 
         protected int GetIdade()
         {
-            return Utils.Data.CalcularIdade(DataNascimento);
+            return Data.CalcularIdade(DataNascimento);
         }
     }
 }

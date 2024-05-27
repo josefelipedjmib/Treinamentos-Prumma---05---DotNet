@@ -1,11 +1,6 @@
-﻿using BancoUtils.Data;
-using BancoUtils.Entidade;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
+﻿using BancoUtils.Entidade;
 
-namespace BancoUtils.Repository
+namespace BancoDigital.Data.Repository
 {
     public class ContaRepository<T> : BaseRepository<T> where T : IEntidade
     {

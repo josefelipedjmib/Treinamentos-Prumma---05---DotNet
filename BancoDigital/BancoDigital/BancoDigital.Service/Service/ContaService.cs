@@ -1,16 +1,13 @@
-﻿using BancoUtils.Data;
+﻿using BancoDigital.Data;
+using BancoDigital.Data.Repository;
 using BancoUtils.Entidade;
-using BancoUtils.Repository;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace BancoUtils.Service
+namespace BancoDigital.Service.Service
 {
     public class ContaService : BaseService<ContaBancaria>
     {
-        public ContaService(BancoContext<ContaBancaria> context) : base(new ContaRepository<ContaBancaria>(context))
+        public ContaService() : base(new ContaRepository<ContaBancaria>(new BancoContext<ContaBancaria>()))
         {
         }
 
