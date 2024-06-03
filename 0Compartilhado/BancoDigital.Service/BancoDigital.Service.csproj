@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BancoDigital.Data.MySQL\BancoDigital.Data.MySQL.csproj" />
     <ProjectReference Include="..\BancoDigital.Data\BancoDigital.Data.csproj" />
     <ProjectReference Include="..\BancoUtils\BancoUtils.csproj" />
   </ItemGroup>

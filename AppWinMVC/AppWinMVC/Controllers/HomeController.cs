@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Web;
+﻿using System.Net.Mail;
 using System.Web.Mail;
 using System.Web.Mvc;
 
@@ -25,7 +21,6 @@ namespace AppWinMVC.Controllers
         public ActionResult Contato()
         {
             ViewBag.Message = "Informações contatos";
-
             return View();
         }
 

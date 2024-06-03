@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoDigital.Service", "..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoUtils", "..\0Compartilhado\BancoUtils\BancoUtils.csproj", "{684E0EBB-2AC8-4456-B000-B183CE830DED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoDigital.Data.MySQL", "..\0Compartilhado\BancoDigital.Data.MySQL\BancoDigital.Data.MySQL.csproj", "{BF60DDE1-6145-4D48-ABFB-17248C175E0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{684E0EBB-2AC8-4456-B000-B183CE830DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{684E0EBB-2AC8-4456-B000-B183CE830DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{684E0EBB-2AC8-4456-B000-B183CE830DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF60DDE1-6145-4D48-ABFB-17248C175E0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF60DDE1-6145-4D48-ABFB-17248C175E0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF60DDE1-6145-4D48-ABFB-17248C175E0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF60DDE1-6145-4D48-ABFB-17248C175E0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{66F7D840-57AE-4656-B70E-92560D69CA86} = {CFFCE5EF-BA43-45B2-9185-A4D9570141DF}
 		{AB0B80AF-B3D6-4538-995F-823D7FF15EBA} = {89ECCE08-DFBA-477A-8CCC-504DF9A35783}
 		{684E0EBB-2AC8-4456-B000-B183CE830DED} = {89ECCE08-DFBA-477A-8CCC-504DF9A35783}
+		{BF60DDE1-6145-4D48-ABFB-17248C175E0F} = {CFFCE5EF-BA43-45B2-9185-A4D9570141DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D33E9AC-DFE9-4E0D-A5D1-9DC09063B006}

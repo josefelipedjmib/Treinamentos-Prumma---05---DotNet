@@ -1,4 +1,5 @@
-﻿using BancoDigital.Data.Repository;
+﻿using BancoDigital.Data.MySQL;
+using BancoDigital.Data.Repository;
 using BancoUtils.Entidade;
 using System.Collections.Generic;
 
@@ -19,6 +20,7 @@ namespace BancoDigital.Service.Service
 
         public List<T> GetAll()
         {
+            var teste = new Contexto("Server=winpqt.mysql.dbaas.com.br;User Id=winpqt;Database=winpqt;Pwd=djMIB@2022@pqt;includesecurityasserts=true;");
             return _repository.GetAll();
         }
 
