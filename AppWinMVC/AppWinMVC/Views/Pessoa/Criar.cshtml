@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Pessoa - Criar";
+}
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>Pessoa</legend>
+            <div class="form-group">
+                <label for="Id">Nome:</label>
+                @Html.TextBox("Nome")
+                @Html.ValidationMessage("Nome", "*")
+            </div>
+            <div class="form-group">
+                <label for="Id">E-mail:</label>
+                @Html.TextBox("Email")
+                @Html.ValidationMessage("Email", "*")
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" />
+            </div>
+        </fieldset>
+    }
+</main>

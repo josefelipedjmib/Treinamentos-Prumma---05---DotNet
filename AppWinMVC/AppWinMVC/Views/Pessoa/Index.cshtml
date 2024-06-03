@@ -1,0 +1,17 @@
+﻿@Model List<BancoUtils.Entidade.Pessoa>
+    @{
+        ViewBag.Title = "Pessoa";
+    }
+    <main aria-labelledby="title">
+        <h2 id="title">@ViewBag.Title.</h2>
+        <h3>@ViewBag.Message</h3>
+        @Html.ActionLink("Criar Pessoa", "Criar", "Pessoa", new { area = "" }, new { @class = "nav-link" })
+        @{
+            foreach (var pessoa in Model)
+            {
+                Response.Write("<p>Nome: " + pessoa.Nome + "<p>");
+            }
+        }
+
+
+    </main>
