@@ -20,6 +20,7 @@ namespace BancoDigital.Service.Service
 
         public List<T> GetAll()
         {
+            var teste = new Contexto("Server=host;User Id=usuário;Pwd=senha;includesecurityasserts=true;");
             return _repository.GetAll();
         }
 
