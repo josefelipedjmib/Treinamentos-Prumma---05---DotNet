@@ -1,4 +1,5 @@
-﻿using BancoDigital.Data.Repository;
+﻿using BancoDigital.Data.MySQL;
+using BancoDigital.Data.Repository;
 using BancoUtils.Entidade;
 using System.Collections.Generic;
 

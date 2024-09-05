@@ -20,16 +20,23 @@ namespace AppWinMVC.Controllers
                 var xml = new XmlDocument();
                 xml.Load(arquivoXML);
                 var conteudo = xml.SelectNodes("//conteudo")[0].InnerText;
-               return View("ConteudoXML", "", conteudo);
-            }catch(Exception ex)
+                return View("ConteudoXML", "", conteudo);
+            }
+            catch (Exception ex)
             {
-                
+
             }
 
             var status = new HttpStatusCodeResult(HttpStatusCode.NotFound, "404 Not Found");
             Response.Status = status.StatusDescription;
             Response.StatusCode = status.StatusCode;
             Response.StatusDescription = status.StatusDescription;
+            return View();
+        }
+
+        [ActionName("500")]
+        public ActionResult Error500()
+        {
             return View();
         }
     }

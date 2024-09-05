@@ -17,20 +17,13 @@ namespace AppWinMVC.Controllers
 
         public ActionResult Criar()
         {
-            return View(new PessoaFisica() { Nome = "Teste"});
+            return View(new PessoaFisica());
         }
 
         [HttpPost]
-        public ActionResult Criar(FormCollection form)
+        public ActionResult Criar(PessoaFisica pessoa)
         {
             RecuperaPessoaServiceSecao();
-            var pessoa = new PessoaFisica();
-            //Exemplo pegando dados da FormCollection
-            pessoa.Nome = form["nome"];
-            pessoa.Email = form["email"];
-            //Exemplo pegando dados direto da Requisição
-            pessoa.Nome = Request.Form["nome"];
-            pessoa.Email = Request.Form["email"];
             _pessoaService.Save(pessoa);
 
             Session["pessoaService"] = _pessoaService;

@@ -1,0 +1,22 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/0Compartilhado/BancoDigital.Data/bin
+/0Compartilhado/BancoDigital.Data.MySQL/bin
+/0Compartilhado/BancoDigital.Data.MySQL/obj
+/0Compartilhado/BancoDigital.Data/obj
+/0Compartilhado/BancoDigital.Service/bin
+/0Compartilhado/BancoDigital.Service/obj
+/0Compartilhado/BancoUtils/bin
+/0Compartilhado/BancoUtils/obj
+/0Compartilhado/Utils/bin
+/0Compartilhado/Utils/obj
+/AppWinMVC/.cr/personal/FavoritesList
+/AppWinMVC/.vs
+/AppWinMVC/AppWinMVC/.vs
+/AppWinMVC/AppWinMVC/bin
+/AppWinMVC/Auxiliar/obj
+/AppWinMVC/Auxiliar/bin
+/AppWinMVC/packages
+/AppWinMVC/AppWinMVC/obj
